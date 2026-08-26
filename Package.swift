@@ -16,11 +16,11 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/swift-primitives/swift-diagnostic-primitives.git",
+            url: "https://github.com/swift-molecules/swift-diagnostic.git",
             branch: "main"
         ),
         .package(
-            url: "https://github.com/swift-primitives/swift-source-primitives.git",
+            url: "https://github.com/swift-molecules/swift-source.git",
             branch: "main"
         ),
     ],
@@ -28,8 +28,8 @@ let package = Package(
         .target(
             name: "Diagnostics",
             dependencies: [
-                .product(name: "Diagnostic Primitives", package: "swift-diagnostic-primitives"),
-                .product(name: "Source Primitives", package: "swift-source-primitives"),
+                .product(name: "Diagnostic", package: "swift-diagnostic"),
+                .product(name: "Source", package: "swift-source"),
             ]
         ),
         .testTarget(

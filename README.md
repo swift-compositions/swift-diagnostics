@@ -4,15 +4,15 @@
 
 Composed parsers and adapters for diagnostic-emitting tools.
 
-`swift-diagnostics` turns external tool output (today: `swift build` stderr) into typed `Diagnostic.Record` values from `swift-diagnostic-primitives`. It's the L3 home for parser logic that composes the L1 record / severity / source-location primitives — so consumers like `swift-impact`, lint runners, and CI reporters share one parser instead of each carrying their own.
+`swift-diagnostics` turns external tool output (today: `swift build` stderr) into typed `Diagnostic.Record` values from `swift-diagnostic`. It's the L3 home for parser logic that composes the L1 record / severity / source-location primitives — so consumers like `swift-impact`, lint runners, and CI reporters share one parser instead of each carrying their own.
 
-The library lives at `Diagnostics` (plural). The L1 record types live at `Diagnostic` (singular) in [swift-diagnostic-primitives](https://github.com/swift-primitives/swift-diagnostic-primitives) and re-export through this package.
+The library lives at `Diagnostics` (plural). The L1 record types live at `Diagnostic` (singular) in [swift-diagnostic](https://github.com/swift-molecules/swift-diagnostic) and re-export through this package.
 
 ## Installation
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/swift-foundations/swift-diagnostics.git", branch: "main")
+    .package(url: "https://github.com/swift-compositions/swift-diagnostics.git", branch: "main")
 ]
 ```
 
@@ -48,14 +48,14 @@ The parser recognises the standard Swift compiler shape `<path>:<line>:<column>:
 
 L3 Foundation. Depends on:
 
-- L1: `swift-diagnostic-primitives` (record / severity types), `swift-source-primitives` (`Source.Location`).
+- L1: `swift-diagnostic` (record / severity types), `swift-source` (`Source.Location`).
 
 Zero external dependencies.
 
 ## Related packages
 
-- [swift-diagnostic-primitives](https://github.com/swift-primitives/swift-diagnostic-primitives) — the L1 record type this parser produces.
-- [swift-impact](https://github.com/swift-foundations/swift-impact) — consumes this parser to surface typed diagnostics from each downstream `swift build`.
+- [swift-diagnostic](https://github.com/swift-molecules/swift-diagnostic) — the L1 record type this parser produces.
+- [swift-impact](https://github.com/swift-compositions/swift-impact) — consumes this parser to surface typed diagnostics from each downstream `swift build`.
 
 ## License
 
