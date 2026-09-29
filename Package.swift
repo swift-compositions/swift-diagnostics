@@ -23,6 +23,10 @@ let package = Package(
             url: "https://github.com/swift-molecules/swift-source.git",
             branch: "main"
         ),
+        .package(
+            url: "https://github.com/swift-atoms/swift-text.git",
+            branch: "main"
+        ),
     ],
     targets: [
         .target(
@@ -35,7 +39,9 @@ let package = Package(
         .testTarget(
             name: "Diagnostics Tests",
             dependencies: [
-                "Diagnostics"
+                "Diagnostics",
+                .product(name: "Source", package: "swift-source"),
+                .product(name: "Text", package: "swift-text"),
             ]
         ),
     ]

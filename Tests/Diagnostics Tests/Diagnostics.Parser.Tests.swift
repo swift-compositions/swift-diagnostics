@@ -1,4 +1,6 @@
+import Source
 import Testing
+import Text
 
 @testable import Diagnostics
 

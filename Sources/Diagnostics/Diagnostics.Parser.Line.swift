@@ -1,3 +1,5 @@
+internal import Source
+
 extension Diagnostics.Parser {
 
     internal enum Line {
