@@ -9,9 +9,10 @@ extension Diagnostics.Parser {
 extension Diagnostics.Parser.Line {
 
     internal static func parse(_ line: Swift.String) -> Diagnostic.Record? {
-        let parts = line.split(separator: ":", maxSplits: 4, omittingEmptySubsequences: false)
+        let drive = drive(of: line)
+        let parts = line.dropFirst(drive.count).split(separator: ":", maxSplits: 4, omittingEmptySubsequences: false)
         guard parts.count == 5 else { return nil }
-        let path = Swift.String(parts[0])
+        let path = drive + Swift.String(parts[0])
         guard let lineNumber = Swift.Int(parts[1]),
             let columnNumber = Swift.Int(parts[2])
         else { return nil }
@@ -29,6 +30,15 @@ extension Diagnostics.Parser.Line {
             identifier: "swift_build_diagnostic",
             message: message
         )
+    }
+
+    internal static func drive(of line: Swift.String) -> Swift.String {
+        let prefix = Swift.Array(line.utf8.prefix(3))
+        return prefix.count == 3
+            && ((0x41...0x5A).contains(prefix[0]) || (0x61...0x7A).contains(prefix[0]))
+            && prefix[1] == 0x3A
+            && (prefix[2] == 0x5C || prefix[2] == 0x2F)
+            ? Swift.String(line.prefix(2)) : ""
     }
 
     internal static func severity(forKeyword keyword: Swift.String) -> Diagnostic.Severity? {
