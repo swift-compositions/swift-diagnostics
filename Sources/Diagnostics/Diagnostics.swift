@@ -1,1 +1,1 @@
-public enum Diagnostics: Swift.Sendable {}
+public enum Diagnostics: Swift::Sendable {}
